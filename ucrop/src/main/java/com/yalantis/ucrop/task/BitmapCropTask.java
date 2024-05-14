@@ -168,7 +168,7 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
             }
             return true;
         } else {
-            FileUtils.copyFile(context ,mImageInputUri, mImageOutputUri);
+            FileUtils.copyFile(context, mImageInputUri, mImageOutputUri);
             return false;
         }
     }
@@ -212,8 +212,9 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
 
         OutputStream outputStream = null;
         ByteArrayOutputStream outStream = null;
+
         try {
-            outputStream = context.getContentResolver().openOutputStream(mImageOutputUri);
+            outputStream = context.getContentResolver().openOutputStream(mImageOutputUri, "wt");
             outStream = new ByteArrayOutputStream();
             croppedBitmap.compress(mCompressFormat, mCompressQuality, outStream);
             outputStream.write(outStream.toByteArray());
